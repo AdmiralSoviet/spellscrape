@@ -46,7 +46,7 @@ function spell_scrape(url, callback) {
         output[json.name] = json;
 
 
-        fs.writeFile('output-lib.json', JSON.stringify(output, null, 4), function (err) {
+        fs.writeFile('output-lib.json', JSON.stringify(output), function (err) {
             console.log("\n'" + json.name + "' Spell Data successfuly extracted!");
             console.log("Name: " + json.name);
             console.log("Level: " + json.level);
