@@ -1,0 +1,17 @@
+{
+  "name": "spell_scrape",
+  "version": "0.0.1",
+  "description": "Grab spell data from dnd wiki",
+  "main": "spellscrape.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "soviet",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "request": "latest",
+    "cheerio": "latest"
+  },
+  "devDependencies": {}
+}
