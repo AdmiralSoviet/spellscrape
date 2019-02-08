@@ -41,7 +41,14 @@ function spell_scrape(url, callback) {
             }
         }
         json.roll = $(".more-info-content").text().match(/\d+d\d+/) ? $(".more-info-content").text().match(/\d+d\d+/).toString() : null;
-        json.description = $(".more-info-content").find("p").text();
+        //json.description = $(".more-info-content").find("p").text();
+        //$(".more-info-content").children("p").contents()[0].data;
+        const desc = [];
+        for(let i = 0; i < $(".more-info-content").children("p").contents().length; i++){
+            if($(".more-info-content").children("p").contents()[i].data)
+                desc.push($(".more-info-content").children("p").contents()[i].data.trim());
+        }
+        json.description = desc.join("\n\n");
 
         output[json.name] = json;
 
