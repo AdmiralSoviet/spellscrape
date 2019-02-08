@@ -42,8 +42,21 @@ function spell_scrape(url, callback) {
         }
         json.roll = $(".more-info-content").text().match(/\d+d\d+/) ? $(".more-info-content").text().match(/\d+d\d+/).toString() : null;
         json.description = $(".more-info-content").find("p").text();
-        const pos = json.description.search(/\.\S/g)+1;
-        json.description = [json.description.slice(0, pos), "\n\n", json.description.slice(pos)].join('')
+
+        // regex to find the paragraph breaks
+        const re = /\.\S/g;
+        let arr;
+        var result = [];
+        let i = 1
+
+        while ((arr = re.exec(json.description)) !== null) {
+            result.push(arr.index + i);
+            i += 2; // compensate for \n\n characters
+        }
+        // insert \n\n into those parts
+        result.forEach((x) => {
+            json.description = [json.description.slice(0, x), "\n\n", json.description.slice(x)].join('');
+        })
 
         output[json.name] = json;
 
